@@ -1131,7 +1131,6 @@ Dengan segenap cinta,
   function initGiftSurprise() {
     const giftBtn = document.getElementById('gift-box-btn');
     const surpriseModal = document.getElementById('gift-surprise-modal');
-    const replayBtn = document.getElementById('replay-all-btn');
 
     if (!giftBtn) return;
 
@@ -1145,11 +1144,11 @@ Dengan segenap cinta,
       }, 500);
     });
 
-    if (replayBtn) {
-      replayBtn.addEventListener('click', () => {
+    if (surpriseModal) {
+      // Menutup pop-up saat kartu atau area mana pun diklik
+      surpriseModal.addEventListener('click', () => {
+        sound.playPop();
         surpriseModal.classList.add('hidden');
-        currentPin = '';
-        showScreen('greeting-screen');
       });
     }
   }
