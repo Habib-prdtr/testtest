@@ -362,18 +362,18 @@
   let currentPin = '';
   let confetti;
 
-  // Romantic Quotes for Level 1 Bubble Pop
+  // Romantic Quotes for Level 1 Bubble Pop (Singkat & Romantis)
   const romanticQuotes = [
-    'Senyum manismu adalah duniaku ❤️',
-    'Terima kasih telah lahir ke dunia, sayang 🌸',
-    'Kamu adalah anugerah terindah bagiku ✨',
-    'Setiap detik bersamamu terasa begitu berharga 💖',
-    'Cintaku padamu tumbuh lebih dalam setiap hari 🌷',
-    'Mata indahmu selalu menenangkan hatiku 🌟',
-    'Kamu wanita paling istimewa & mempesona 👑',
-    'Bersamamu hatiku selalu menemukan rumah 🕊️',
-    'Semoga seluruh impian sucimu tercapai 🎂',
-    'I love you today, tomorrow, and forever! 💍'
+    'Kamu duniaku ❤️',
+    'Senyummu manis ✨',
+    'Selalu di hatiku 💖',
+    'Anugerah terindah 🌸',
+    'Cintaku padamu 🌷',
+    'Bidadari tercantik 👑',
+    'Rumah ternyamanku 🕊️',
+    'Bahagiaku bersamamu 🌟',
+    'Doa terbaik untukmu 🎂',
+    'I Love You Forever 💍'
   ];
 
   // Quiz Questions for Level 2
@@ -670,64 +670,96 @@ Dengan segenap cinta,
     progressBar.style.width = '0%';
     modal.classList.add('hidden');
 
-    const quotes = [...romanticQuotes];
+    function spawnSingleBubble(index) {
+      if (index >= 10) {
+        setTimeout(() => {
+          sound.playSuccess();
+          confetti.burst(120);
+          modal.classList.remove('hidden');
+        }, 500);
+        return;
+      }
 
-    for (let i = 0; i < 10; i++) {
+      container.innerHTML = '';
+
       const bubble = document.createElement('div');
       bubble.className = 'heart-bubble';
 
-      const size = Math.floor(Math.random() * 20) + 56; // 56px to 76px
-      const top = Math.floor(Math.random() * 65) + 10;  // 10% to 75%
-      const left = Math.floor(Math.random() * 80) + 8; // 8% to 88%
-      const animDelay = (Math.random() * 3).toFixed(2);
-      const animDuration = (Math.random() * 2 + 4).toFixed(2);
+      const size = 72; // ukuran proporsional dan mudah disentuh
+      // Posisi acak yang nyaman di dalam wadah
+      const top = Math.floor(Math.random() * 50) + 20;  // 20% to 70%
+      const left = Math.floor(Math.random() * 65) + 15; // 15% to 80%
 
       bubble.style.width = `${size}px`;
       bubble.style.height = `${size}px`;
       bubble.style.top = `${top}%`;
       bubble.style.left = `${left}%`;
-      bubble.style.animationDelay = `${animDelay}s`;
-      bubble.style.animationDuration = `${animDuration}s`;
+      bubble.style.transform = 'scale(0)';
+      bubble.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
 
-      bubble.innerHTML = `<span class="text-2xl select-none filter drop-shadow">💖</span>`;
+      bubble.innerHTML = `
+        <div class="flex flex-col items-center justify-center pointer-events-none select-none">
+          <span class="text-3xl filter drop-shadow">💖</span>
+          <span class="text-[10px] font-bold text-white/90 bg-pink-900/60 px-1.5 py-0.5 rounded-full mt-0.5 border border-white/20">
+            ${index + 1}/10
+          </span>
+        </div>
+      `;
 
-      bubble.addEventListener('click', e => {
+      container.appendChild(bubble);
+
+      // Animasi muncul membesar (pop in)
+      requestAnimationFrame(() => {
+        bubble.style.transform = 'scale(1)';
+      });
+
+      let clicked = false;
+      bubble.addEventListener('click', () => {
+        if (clicked) return;
+        clicked = true;
+
         sound.playPop();
 
         // Spawn floating romantic quote
         const rect = bubble.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
-        const quoteText = quotes[i] || 'Aku mencintaimu! ❤️';
+        const quoteText = romanticQuotes[index] || 'I Love You ❤️';
 
         const quotePill = document.createElement('div');
-        quotePill.className = 'absolute bubble-quote-pill bg-pink-600/90 text-white text-xs md:text-sm px-3 py-1.5 rounded-full shadow-lg border border-white/40 whitespace-nowrap z-30 font-medium';
+        quotePill.className = 'absolute bubble-quote-pill bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm md:text-base px-4 py-2 rounded-full shadow-xl border border-white/50 whitespace-nowrap z-30 font-semibold flex items-center space-x-1.5';
         quotePill.style.left = `${rect.left - containerRect.left + rect.width / 2}px`;
         quotePill.style.top = `${rect.top - containerRect.top}px`;
         quotePill.innerText = quoteText;
 
         container.appendChild(quotePill);
-        setTimeout(() => quotePill.remove(), 1800);
+        setTimeout(() => quotePill.remove(), 1600);
 
-        // Remove bubble with pop effect
+        // Pop out & hilang
         bubble.style.transform = 'scale(1.4)';
         bubble.style.opacity = '0';
-        setTimeout(() => bubble.remove(), 250);
 
         bubblesCaught++;
         counterText.innerText = `${bubblesCaught} / 10`;
         progressBar.style.width = `${(bubblesCaught / 10) * 100}%`;
 
-        if (bubblesCaught >= 10) {
-          setTimeout(() => {
-            sound.playSuccess();
-            confetti.burst(100);
-            modal.classList.remove('hidden');
-          }, 600);
-        }
+        setTimeout(() => {
+          bubble.remove();
+          // Lanjut ke gelembung berikutnya setelah jeda manis
+          if (bubblesCaught < 10) {
+            spawnSingleBubble(bubblesCaught);
+          } else {
+            setTimeout(() => {
+              sound.playSuccess();
+              confetti.burst(130);
+              modal.classList.remove('hidden');
+            }, 400);
+          }
+        }, 300);
       });
-
-      container.appendChild(bubble);
     }
+
+    // Mulai gelembung pertama
+    spawnSingleBubble(0);
   }
 
   // --- Screen 4: Level 2 (Trivia Romantis) ---
