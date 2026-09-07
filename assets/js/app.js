@@ -358,7 +358,7 @@
   }
 
   // --- State & DOM References ---
-  const TARGET_PIN = '23102005';
+  const TARGET_PIN = '12052004';
   let currentPin = '';
   let confetti;
 
