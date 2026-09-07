@@ -991,7 +991,7 @@ Dengan segenap cinta,
 
     polaroids.forEach((item, idx) => {
       const col = document.createElement('div');
-      col.className = 'w-72 md:w-80 flex-shrink-0 cursor-pointer select-none';
+      col.className = 'w-full max-w-sm cursor-pointer select-none my-2';
 
       const rot = rotations[idx % rotations.length];
 
@@ -1001,7 +1001,7 @@ Dengan segenap cinta,
           <div class="aspect-square w-full overflow-hidden rounded mb-3 bg-gray-100">
             <img src="${item.src}" alt="${item.caption}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
           </div>
-          <p class="font-romantic text-lg md:text-xl text-gray-800 text-center leading-snug px-2">
+          <p class="font-romantic text-xl md:text-2xl text-gray-800 text-center leading-snug px-2">
             ${item.caption}
           </p>
         </div>
@@ -1037,10 +1037,26 @@ Dengan segenap cinta,
   let letterTypewriterRunning = false;
 
   function initLoveLetter() {
+    const openLetterPageBtn = document.getElementById('open-letter-page-btn');
+    const backToMemoriesBtn = document.getElementById('back-to-memories-btn');
     const envelope = document.getElementById('love-envelope');
     const letterPaper = document.getElementById('letter-content-paper');
     const letterTextEl = document.getElementById('letter-typewriter-text');
     const giftTriggerSection = document.getElementById('gift-surprise-section');
+
+    if (openLetterPageBtn) {
+      openLetterPageBtn.addEventListener('click', () => {
+        sound.playSuccess();
+        showScreen('letter-screen');
+        confetti.rainHearts(3000);
+      });
+    }
+
+    if (backToMemoriesBtn) {
+      backToMemoriesBtn.addEventListener('click', () => {
+        showScreen('memories-screen');
+      });
+    }
 
     if (!envelope) return;
 
@@ -1061,7 +1077,7 @@ Dengan segenap cinta,
               giftTriggerSection.classList.remove('hidden');
               giftTriggerSection.scrollIntoView({ behavior: 'smooth' });
               sound.playSuccess();
-              confetti.burst(100);
+              confetti.burst(120);
             }
           });
         }

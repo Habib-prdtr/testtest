@@ -296,9 +296,9 @@
     </section>
 
     <!-- ==========================================
-         SCREEN 6: MEMORIES GALLERY, LOVE LETTER & GIFT
+         SCREEN 6: MEMORIES GALLERY (SCROLL KE BAWAH)
          ========================================== -->
-    <section id="memories-screen" class="app-screen w-full max-w-4xl mx-auto hidden pb-20">
+    <section id="memories-screen" class="app-screen w-full max-w-2xl mx-auto hidden pb-20">
       
       <!-- Polaroid Gallery Header -->
       <div class="text-center mb-8">
@@ -309,75 +309,109 @@
           Galeri Kenangan Manis Kita
         </h2>
         <p class="text-pink-200/80 text-sm md:text-base font-light max-w-md mx-auto">
-          Geser dan ketuk foto untuk melihat kisah hangat di balik setiap momen indah kita bersama.
+          Gulir ke bawah untuk melihat kisah hangat kita, lalu buka surat rahasia di akhir kenangan ini.
         </p>
       </div>
 
-      <!-- Horizontal Scrollable Polaroid Track -->
-      <div class="w-full overflow-x-auto pb-8 pt-4 px-2 no-scrollbar">
-        <div id="polaroid-gallery-track" class="flex space-x-6 md:space-x-8 items-center min-w-max mx-auto px-4">
-          <!-- Polaroid cards injected via JavaScript -->
+      <!-- Vertical Scrollable Polaroid Feed (Scroll ke Bawah) -->
+      <div id="polaroid-gallery-track" class="w-full flex flex-col items-center space-y-12 py-4 px-2">
+        <!-- Polaroid cards injected via JavaScript stacked vertically -->
+      </div>
+
+      <!-- Bottom Transition to Dedicated Love Letter Page -->
+      <div class="text-center mt-16 mb-6">
+        <div class="glass-panel max-w-md mx-auto rounded-3xl p-6 md:p-8 border border-pink-400/30 shadow-2xl relative overflow-hidden">
+          <div class="text-5xl mb-3 animate-bounce">💌✨</div>
+          <h3 class="text-2xl font-bold font-serif-title text-pink-300 mb-2">
+            Sepucuk Surat Cinta Khusus
+          </h3>
+          <p class="text-pink-100/90 text-sm mb-6 font-light leading-relaxed">
+            Ada sebuah surat rahasia yang kutulis tulus dari lubuk hatiku yang terdalam hanya untukmu...
+          </p>
+          <button id="open-letter-page-btn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold text-base shadow-lg shadow-pink-500/40 hover:scale-105 active:scale-95 transition flex items-center justify-center space-x-2">
+            <span>Buka & Baca Surat Cinta</span>
+            <span>💌 ➔</span>
+          </button>
         </div>
       </div>
 
-      <!-- Scroll Down Indicator -->
-      <div class="text-center my-10 animate-bounce">
-        <p class="text-pink-300/80 text-xs uppercase tracking-widest mb-1">Gulir ke bawah untuk membaca surat</p>
-        <span class="text-2xl text-pink-400">↓</span>
+      <!-- Fullscreen Polaroid Lightbox Modal -->
+      <div id="polaroid-lightbox-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="relative max-w-md w-full bg-white text-gray-900 rounded-2xl p-4 shadow-2xl">
+          <button id="lightbox-close-btn" class="absolute -top-12 right-0 text-white text-3xl font-light hover:text-pink-300 transition">
+            ✕
+          </button>
+          <div class="aspect-square w-full overflow-hidden rounded-xl mb-4 bg-gray-100">
+            <img id="lightbox-img" src="" alt="Kenangan Romantis" class="w-full h-full object-cover">
+          </div>
+          <h4 id="lightbox-caption" class="font-romantic text-2xl text-rose-800 mb-2 text-center"></h4>
+          <p id="lightbox-story" class="text-xs md:text-sm text-gray-600 leading-relaxed text-center font-light px-2"></p>
+        </div>
       </div>
 
-      <!-- ==========================================
-           SECTION: VINTAGE LOVE LETTER & ENVELOPE
-           ========================================== -->
-      <div class="mt-12 text-center">
-        
+    </section>
+
+    <!-- ==========================================
+         SCREEN 7: DEDICATED LOVE LETTER PAGE (HALAMAN TERSENDIRI)
+         ========================================== -->
+    <section id="letter-screen" class="app-screen w-full max-w-2xl mx-auto hidden pb-24">
+      
+      <!-- Navigasi Kembali ke Foto -->
+      <div class="flex justify-start mb-6">
+        <button id="back-to-memories-btn" class="glass-panel-light px-4 py-2 rounded-full text-xs md:text-sm text-pink-200 hover:text-white transition flex items-center space-x-1.5 border border-white/20">
+          <span>←</span>
+          <span>Kembali ke Galeri Foto</span>
+        </button>
+      </div>
+
+      <div class="text-center mb-8">
+        <span class="text-xs uppercase tracking-wider font-semibold text-pink-300 bg-pink-950/60 px-4 py-1.5 rounded-full border border-pink-500/30 inline-block mb-3">
+          Surat Dari Lubuk Hati 💌
+        </span>
         <h2 class="text-3xl md:text-4xl font-bold font-serif-title text-white mb-2">
-          Sepucuk Surat Cinta Untukmu 💌
+          Pesan Terindah di Hari Lahirmu
         </h2>
-        <p class="text-pink-200/80 text-sm md:text-base font-light mb-8 max-w-md mx-auto">
-          Ketuk amplop di bawah ini untuk membuka dan membaca isi surat rahasia ini.
+        <p class="text-pink-200/80 text-sm md:text-base font-light max-w-md mx-auto">
+          Ketuk segel lilin hati pada amplop untuk membuka dan membaca isi surat ini.
         </p>
+      </div>
 
-        <!-- Envelope -->
-        <div class="envelope-wrapper mb-8">
-          <div id="love-envelope" class="envelope flex items-center justify-center">
-            <div class="envelope-flap"></div>
-            <div class="wax-seal">
-              <span class="text-xl">❤️</span>
-            </div>
-            <div class="text-white/70 font-romantic text-2xl z-0">
-              Buka Surat Ini, Sayangku ✨
-            </div>
+      <!-- Vintage Envelope -->
+      <div class="envelope-wrapper mb-8">
+        <div id="love-envelope" class="envelope flex items-center justify-center">
+          <div class="envelope-flap"></div>
+          <div class="wax-seal">
+            <span class="text-xl">❤️</span>
+          </div>
+          <div class="text-white/70 font-romantic text-2xl z-0">
+            Buka Surat Ini, Sayangku ✨
           </div>
         </div>
+      </div>
 
-        <!-- Unfolded Letter Paper Sheet -->
-        <div id="letter-content-paper" class="letter-sheet max-w-2xl mx-auto p-6 md:p-10 text-left hidden border border-pink-200/50 shadow-2xl">
-          
-          <!-- Letter Top Header -->
-          <div class="text-center pb-6 border-b border-rose-100 mb-6">
-            <span class="text-4xl md:text-5xl block mb-2">🎂💖</span>
-            <h3 class="font-serif-title text-2xl md:text-3xl font-bold text-rose-900 mb-1">
-              Happy Birthday, My Dearest Love!
-            </h3>
-            <p class="text-xs uppercase tracking-widest text-rose-400 font-semibold">
-              23 Oktober 2005 • Hari Paling Istimewa
-            </p>
-          </div>
+      <!-- Unfolded Letter Paper Sheet -->
+      <div id="letter-content-paper" class="letter-sheet max-w-2xl mx-auto p-6 md:p-10 text-left hidden border border-pink-200/50 shadow-2xl mb-12">
+        
+        <!-- Letter Top Header -->
+        <div class="text-center pb-6 border-b border-rose-100 mb-6">
+          <span class="text-4xl md:text-5xl block mb-2">🎂💖</span>
+          <h3 class="font-serif-title text-2xl md:text-3xl font-bold text-rose-900 mb-1">
+            Happy Birthday, My Dearest Love!
+          </h3>
+          <p class="text-xs uppercase tracking-widest text-rose-400 font-semibold">
+            23 Oktober 2005 • Hari Paling Istimewa
+          </p>
+        </div>
 
-          <!-- Typewriter Output Text -->
-          <div class="font-romantic text-xl md:text-2xl leading-relaxed text-gray-800 whitespace-pre-line" id="letter-typewriter-text">
-            <!-- Dynamically typed per character via JS -->
-          </div>
-
+        <!-- Typewriter Output Text -->
+        <div class="font-romantic text-xl md:text-2xl leading-relaxed text-gray-800 whitespace-pre-line" id="letter-typewriter-text">
+          <!-- Dynamically typed per character via JS -->
         </div>
 
       </div>
 
-      <!-- ==========================================
-           SECTION: SURPRISE BIRTHDAY GIFT BOX
-           ========================================== -->
-      <div id="gift-surprise-section" class="mt-16 text-center hidden">
+      <!-- Surprise Birthday Gift Box (Muncul di bawah surat setelah selesai diketik) -->
+      <div id="gift-surprise-section" class="mt-12 text-center hidden">
         <div class="glass-panel max-w-md mx-auto rounded-3xl p-8 border border-amber-300/30 shadow-2xl relative overflow-hidden">
           
           <div class="inline-block mb-4">
@@ -397,20 +431,6 @@
             Buka Hadiah Terakhir ✨
           </button>
 
-        </div>
-      </div>
-
-      <!-- Fullscreen Polaroid Lightbox Modal -->
-      <div id="polaroid-lightbox-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="relative max-w-md w-full bg-white text-gray-900 rounded-2xl p-4 shadow-2xl">
-          <button id="lightbox-close-btn" class="absolute -top-12 right-0 text-white text-3xl font-light hover:text-pink-300 transition">
-            ✕
-          </button>
-          <div class="aspect-square w-full overflow-hidden rounded-xl mb-4 bg-gray-100">
-            <img id="lightbox-img" src="" alt="Kenangan Romantis" class="w-full h-full object-cover">
-          </div>
-          <h4 id="lightbox-caption" class="font-romantic text-2xl text-rose-800 mb-2 text-center"></h4>
-          <p id="lightbox-story" class="text-xs md:text-sm text-gray-600 leading-relaxed text-center font-light px-2"></p>
         </div>
       </div>
 
