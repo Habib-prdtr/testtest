@@ -1,18 +1,19 @@
 /* ==========================================================================
-   Romantic Birthday Celebration Stylesheet
-   Crafted with luxury aesthetics, glassmorphism, and responsive micro-interactions
+   Romantic Birthday Celebration - Bright & Colorful Luxury Theme
+   Crafted with radiant pastel gradients, bright glassmorphism & joyful aesthetics
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&display=swap');
 
 :root {
   --primary-rose: #f43f5e;
   --primary-blush: #fb7185;
-  --primary-gold: #fbbf24;
-  --bg-gradient: linear-gradient(135deg, #0f051d 0%, #290829 45%, #18031e 100%);
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-glow: 0 8px 32px 0 rgba(244, 63, 94, 0.25);
+  --primary-coral: #fb923c;
+  --primary-purple: #c084fc;
+  --primary-gold: #f59e0b;
+  --text-main: #1f2937;
+  --text-muted: #64748b;
+  --text-rose: #be123c;
 }
 
 * {
@@ -22,9 +23,10 @@
 
 body {
   font-family: 'Outfit', sans-serif;
-  background: var(--bg-gradient);
+  background: linear-gradient(135deg, #fff1f2 0%, #fef3c7 20%, #fdf2f8 45%, #f3e8ff 70%, #e0f2fe 100%);
+  background-attachment: fixed;
   min-height: 100vh;
-  color: #fff;
+  color: var(--text-main);
   overflow-x: hidden;
   position: relative;
 }
@@ -37,50 +39,50 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-/* Background Ambient Lighting & Floating Bokeh */
+/* Ambient Colorful Lighting Orbs */
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 0;
 }
 
 .glow-1 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(244, 63, 94, 0.35) 0%, transparent 70%);
-  top: -50px;
-  left: -50px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.4) 0%, rgba(253, 164, 175, 0.15) 50%, transparent 70%);
+  top: -60px;
+  left: -60px;
   animation: floatAmbient 12s ease-in-out infinite alternate;
 }
 
 .glow-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
-  bottom: 10%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.35) 0%, rgba(216, 180, 254, 0.12) 50%, transparent 70%);
+  bottom: 5%;
   right: -80px;
   animation: floatAmbient 16s ease-in-out infinite alternate-reverse;
 }
 
 .glow-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
-  top: 45%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(252, 211, 77, 0.4) 0%, rgba(254, 240, 138, 0.15) 50%, transparent 70%);
+  top: 40%;
   left: 30%;
   animation: pulseGlow 8s ease-in-out infinite alternate;
 }
 
 @keyframes floatAmbient {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(40px, 60px) scale(1.15); }
+  100% { transform: translate(50px, 60px) scale(1.15); }
 }
 
 @keyframes pulseGlow {
-  0% { opacity: 0.3; transform: scale(0.9); }
-  100% { opacity: 0.7; transform: scale(1.2); }
+  0% { opacity: 0.4; transform: scale(0.9); }
+  100% { opacity: 0.8; transform: scale(1.2); }
 }
 
 /* Floating Hearts Background Canvas */
@@ -98,20 +100,21 @@ body {
   z-index: 100;
 }
 
-/* Glassmorphism Card System */
+/* Bright Glassmorphism Cards */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 45px -10px rgba(244, 63, 94, 0.16), 0 10px 25px -5px rgba(168, 85, 247, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
 .glass-panel-light {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px rgba(244, 63, 94, 0.08);
 }
 
 /* Keypad PIN Shake Animation on Error */
@@ -127,18 +130,20 @@ body {
 
 /* PIN Indicator dots */
 .pin-dot {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2px solid rgba(244, 63, 94, 0.6);
+  border: 2px solid #fda4af;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 6px rgba(244, 63, 94, 0.15);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pin-dot.filled {
   background: linear-gradient(135deg, #f43f5e, #fb7185);
   border-color: #f43f5e;
-  box-shadow: 0 0 14px rgba(244, 63, 94, 0.8);
-  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(244, 63, 94, 0.7);
+  transform: scale(1.2);
 }
 
 /* Level 1: Catch The Heart Bubbles */
@@ -148,6 +153,9 @@ body {
   height: 400px;
   overflow: visible;
   border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 2px 8px rgba(244, 63, 94, 0.06);
 }
 
 .heart-bubble {
@@ -158,21 +166,21 @@ body {
   align-items: center;
   justify-content: center;
   user-select: none;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), rgba(244, 63, 94, 0.35) 40%, rgba(225, 29, 72, 0.7) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.7);
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fed7aa 25%, #f472b6 65%, #e11d48 100%);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(244, 63, 94, 0.35), inset 0 2px 8px rgba(255, 255, 255, 0.9);
   transition: transform 0.2s ease, opacity 0.3s ease;
   animation: floatBubble 5s ease-in-out infinite alternate;
 }
 
 .heart-bubble:hover {
-  transform: scale(1.12);
-  box-shadow: 0 0 30px rgba(244, 63, 94, 0.8), inset 0 2px 8px #fff;
+  transform: scale(1.15);
+  box-shadow: 0 0 32px rgba(244, 63, 94, 0.65), inset 0 2px 8px #fff;
 }
 
 @keyframes floatBubble {
   0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(4deg); }
+  50% { transform: translateY(-18px) rotate(5deg); }
   100% { transform: translateY(8px) rotate(-4deg); }
 }
 
@@ -183,7 +191,7 @@ body {
   white-space: normal;
   text-align: center;
   z-index: 50;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 20px rgba(244, 63, 94, 0.7);
+  box-shadow: 0 10px 25px rgba(244, 63, 94, 0.35), 0 0 20px rgba(251, 146, 60, 0.3);
 }
 
 @keyframes quoteFloatUp {
@@ -232,46 +240,47 @@ body {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .card-front {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 50%, #fce7f3 100%);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 18px rgba(244, 63, 94, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
 .card-back {
-  background: linear-gradient(135deg, #be123c, #881337);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #fb7185 0%, #f43f5e 50%, #e11d48 100%);
+  border: 2px solid rgba(255, 255, 255, 0.6);
   transform: rotateY(180deg);
-  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
+  box-shadow: 0 10px 25px rgba(244, 63, 94, 0.35);
 }
 
 .card-flipper.matched .card-back {
-  background: linear-gradient(135deg, #059669, #047857);
-  border-color: rgba(52, 211, 153, 0.6);
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, #34d399, #10b981);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.5);
 }
 
 /* Polaroid Gallery Styling */
 .polaroid-card {
   background: #ffffff;
   color: #1f2937;
-  padding: 12px 12px 20px 12px;
-  border-radius: 4px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.35), 0 10px 10px rgba(0,0,0,0.22);
+  padding: 14px 14px 22px 14px;
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(244, 63, 94, 0.15), 0 6px 14px rgba(0, 0, 0, 0.08);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   position: relative;
+  border: 1px solid rgba(255, 241, 242, 0.8);
 }
 
 .polaroid-card:hover {
   transform: scale(1.05) rotate(0deg) !important;
-  box-shadow: 0 22px 40px rgba(244, 63, 94, 0.45);
+  box-shadow: 0 24px 50px rgba(244, 63, 94, 0.35);
   z-index: 20;
 }
 
@@ -280,12 +289,12 @@ body {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 86px;
   height: 24px;
-  background: rgba(251, 191, 36, 0.65);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  border-left: 2px dashed rgba(0,0,0,0.1);
-  border-right: 2px dashed rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, rgba(252, 211, 77, 0.75), rgba(251, 146, 60, 0.7));
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-left: 2px dashed rgba(0,0,0,0.15);
+  border-right: 2px dashed rgba(0,0,0,0.15);
   backdrop-filter: blur(2px);
   pointer-events: none;
 }
@@ -301,9 +310,9 @@ body {
   max-width: 480px;
   height: 260px;
   margin: 0 auto;
-  background: #9f1239;
-  border-radius: 12px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(145deg, #f43f5e 0%, #e11d48 50%, #be123c 100%);
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(244, 63, 94, 0.35);
   cursor: pointer;
   overflow: visible;
   transition: all 0.5s ease;
@@ -317,7 +326,7 @@ body {
   height: 0;
   border-left: 240px solid transparent;
   border-right: 240px solid transparent;
-  border-top: 140px solid #be123c;
+  border-top: 140px solid #fb7185;
   transform-origin: top;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
@@ -341,14 +350,14 @@ body {
   top: 100px;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  background: radial-gradient(circle, #f59e0b, #b45309);
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(circle, #fde047 0%, #f59e0b 50%, #d97706 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.45), inset 0 2px 4px rgba(255,255,255,0.7);
   z-index: 12;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -360,13 +369,13 @@ body {
 }
 
 .letter-sheet {
-  background: #fffdfa;
+  background: #ffffff;
   color: #374151;
-  border-radius: 16px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
-  border: 1px solid #f3e8e2;
+  border-radius: 20px;
+  box-shadow: 0 16px 45px rgba(244, 63, 94, 0.18);
+  border: 2px solid #fce7f3;
   position: relative;
-  background-image: radial-gradient(#e5e7eb 0.75px, transparent 0.75px);
+  background-image: radial-gradient(#fbcfe8 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -375,7 +384,7 @@ body {
   display: inline-block;
   width: 3px;
   height: 1.1em;
-  background-color: #e11d48;
+  background-color: #f43f5e;
   vertical-align: middle;
   margin-left: 2px;
   animation: blinkCursor 0.75s step-end infinite;
@@ -395,13 +404,13 @@ body {
 }
 
 .gift-box-btn:hover {
-  transform: scale(1.12);
-  filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.8));
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 25px rgba(251, 146, 60, 0.8));
 }
 
 @keyframes bounceGift {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-12px) scale(1.05); }
+  50% { transform: translateY(-12px) scale(1.06); }
 }
 
 /* Custom Scrollbar */
@@ -410,12 +419,12 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(15, 5, 29, 0.6);
+  background: #fff1f2;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(244, 63, 94, 0.4);
+  background: #f472b6;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(244, 63, 94, 0.8);
+  background: #f43f5e;
 }

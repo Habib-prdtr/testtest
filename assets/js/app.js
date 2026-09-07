@@ -312,6 +312,8 @@
     const hearts = [];
     const maxHearts = 24;
 
+    const pastelColors = ['#f43f5e', '#fb7185', '#fb923c', '#f472b6', '#c084fc', '#38bdf8', '#facc15'];
+
     for (let i = 0; i < maxHearts; i++) {
       hearts.push({
         x: Math.random() * width,
@@ -319,8 +321,9 @@
         size: Math.random() * 12 + 8,
         speedY: Math.random() * 0.7 + 0.3,
         speedX: Math.sin(Math.random() * Math.PI * 2) * 0.4,
-        opacity: Math.random() * 0.4 + 0.15,
-        swing: Math.random() * 0.02 + 0.01
+        opacity: Math.random() * 0.35 + 0.15,
+        swing: Math.random() * 0.02 + 0.01,
+        color: pastelColors[i % pastelColors.length]
       });
     }
 
@@ -339,7 +342,7 @@
         ctx.save();
         ctx.translate(h.x, h.y);
         ctx.globalAlpha = h.opacity;
-        ctx.fillStyle = '#f43f5e';
+        ctx.fillStyle = h.color;
 
         const d = h.size;
         ctx.beginPath();
@@ -824,19 +827,19 @@ Dengan segenap cinta,
 
     qData.options.forEach((opt, optIdx) => {
       const btn = document.createElement('button');
-      btn.className = 'w-full text-left p-4 rounded-xl bg-white/10 hover:bg-pink-600/30 border border-white/20 transition-all duration-300 flex items-center space-x-3 group active:scale-[0.98]';
+      btn.className = 'w-full text-left p-4 rounded-2xl bg-white/90 hover:bg-pink-50 border border-rose-100/90 shadow-sm transition-all duration-300 flex items-center space-x-3 group active:scale-[0.98]';
       btn.innerHTML = `
-        <span class="w-8 h-8 rounded-full bg-pink-500/30 text-pink-300 font-bold flex items-center justify-center text-sm border border-pink-400/40 group-hover:bg-pink-500 group-hover:text-white transition">
+        <span class="w-8 h-8 rounded-full bg-pink-100 text-pink-700 font-bold flex items-center justify-center text-sm border border-pink-200 group-hover:bg-pink-500 group-hover:text-white transition shadow-xs">
           ${letters[optIdx]}
         </span>
-        <span class="text-sm md:text-base text-gray-100 font-medium group-hover:text-white flex-1">${opt}</span>
+        <span class="text-sm md:text-base text-slate-700 font-medium group-hover:text-rose-900 flex-1">${opt}</span>
       `;
 
       btn.addEventListener('click', () => {
         if (optIdx === qData.correctIndex) {
           // Correct answer
-          btn.classList.remove('bg-white/10', 'hover:bg-pink-600/30');
-          btn.classList.add('bg-emerald-600/50', 'border-emerald-400');
+          btn.classList.remove('bg-white/90', 'hover:bg-pink-50');
+          btn.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
           sound.playSuccess();
           confetti.burst(60);
 
