@@ -1,0 +1,416 @@
+/* ==========================================================================
+   Romantic Birthday Celebration Stylesheet
+   Crafted with luxury aesthetics, glassmorphism, and responsive micro-interactions
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+
+:root {
+  --primary-rose: #f43f5e;
+  --primary-blush: #fb7185;
+  --primary-gold: #fbbf24;
+  --bg-gradient: linear-gradient(135deg, #0f051d 0%, #290829 45%, #18031e 100%);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-glow: 0 8px 32px 0 rgba(244, 63, 94, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.font-romantic {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-serif-title {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Background Ambient Lighting & Floating Bokeh */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.35) 0%, transparent 70%);
+  top: -50px;
+  left: -50px;
+  animation: floatAmbient 12s ease-in-out infinite alternate;
+}
+
+.glow-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+  bottom: 10%;
+  right: -80px;
+  animation: floatAmbient 16s ease-in-out infinite alternate-reverse;
+}
+
+.glow-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+  top: 45%;
+  left: 30%;
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatAmbient {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 60px) scale(1.15); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  100% { opacity: 0.7; transform: scale(1.2); }
+}
+
+/* Floating Hearts Background Canvas */
+#hearts-canvas, #confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#confetti-canvas {
+  z-index: 100;
+}
+
+/* Glassmorphism Card System */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Keypad PIN Shake Animation on Error */
+@keyframes shakeKeypad {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-12px); }
+  40%, 80% { transform: translateX(12px); }
+}
+
+.shake {
+  animation: shakeKeypad 0.5s ease-in-out;
+}
+
+/* PIN Indicator dots */
+.pin-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(244, 63, 94, 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pin-dot.filled {
+  background: linear-gradient(135deg, #f43f5e, #fb7185);
+  border-color: #f43f5e;
+  box-shadow: 0 0 14px rgba(244, 63, 94, 0.8);
+  transform: scale(1.15);
+}
+
+/* Level 1: Catch The Heart Bubbles */
+.heart-bubble-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.heart-bubble {
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), rgba(244, 63, 94, 0.35) 40%, rgba(225, 29, 72, 0.7) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  animation: floatBubble 5s ease-in-out infinite alternate;
+}
+
+.heart-bubble:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 30px rgba(244, 63, 94, 0.8), inset 0 2px 8px #fff;
+}
+
+@keyframes floatBubble {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(4deg); }
+  100% { transform: translateY(8px) rotate(-4deg); }
+}
+
+.bubble-quote-pill {
+  animation: quoteFloatUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes quoteFloatUp {
+  0% { opacity: 0; transform: translate(-50%, 20px) scale(0.8); }
+  25% { opacity: 1; transform: translate(-50%, -10px) scale(1.05); }
+  80% { opacity: 1; transform: translate(-50%, -30px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50px) scale(0.9); }
+}
+
+/* Level 3: 3D Memory Card Game */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  perspective: 1000px;
+}
+
+@media (max-width: 480px) {
+  .memory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+.card-flipper {
+  aspect-ratio: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.card-flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-flipper.matched {
+  transform: rotateY(180deg) scale(0.96);
+  pointer-events: none;
+}
+
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #be123c, #881337);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
+}
+
+.card-flipper.matched .card-back {
+  background: linear-gradient(135deg, #059669, #047857);
+  border-color: rgba(52, 211, 153, 0.6);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+/* Polaroid Gallery Styling */
+.polaroid-card {
+  background: #ffffff;
+  color: #1f2937;
+  padding: 12px 12px 20px 12px;
+  border-radius: 4px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.35), 0 10px 10px rgba(0,0,0,0.22);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+}
+
+.polaroid-card:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 22px 40px rgba(244, 63, 94, 0.45);
+  z-index: 20;
+}
+
+.washi-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 24px;
+  background: rgba(251, 191, 36, 0.65);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  border-left: 2px dashed rgba(0,0,0,0.1);
+  border-right: 2px dashed rgba(0,0,0,0.1);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Love Letter & Envelope */
+.envelope-wrapper {
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 260px;
+  margin: 0 auto;
+  background: #9f1239;
+  border-radius: 12px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  overflow: visible;
+  transition: all 0.5s ease;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-left: 240px solid transparent;
+  border-right: 240px solid transparent;
+  border-top: 140px solid #be123c;
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+@media (max-width: 520px) {
+  .envelope-flap {
+    border-left-width: 170px;
+    border-right-width: 170px;
+    border-top-width: 100px;
+  }
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  background: radial-gradient(circle, #f59e0b, #b45309);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+  z-index: 12;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.envelope.open .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  pointer-events: none;
+}
+
+.letter-sheet {
+  background: #fffdfa;
+  color: #374151;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  border: 1px solid #f3e8e2;
+  position: relative;
+  background-image: radial-gradient(#e5e7eb 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background-color: #e11d48;
+  vertical-align: middle;
+  margin-left: 2px;
+  animation: blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Surprise Gift Box Animation */
+.gift-box-btn {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  animation: bounceGift 2s infinite ease-in-out;
+}
+
+.gift-box-btn:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.8));
+}
+
+@keyframes bounceGift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12px) scale(1.05); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 5, 29, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 63, 94, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 63, 94, 0.8);
+}

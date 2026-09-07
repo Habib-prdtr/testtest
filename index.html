@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, My Love! 💖 Special Surprise</title>
+  <meta name="description" content="Website kejutan ulang tahun romantis penuh cinta, kenangan, mini-game interaktif dan surat cinta istimewa.">
+  <meta property="og:title" content="Happy Birthday, My Love! 💖">
+  <meta property="og:description" content="Sebuah kejutan romantis khusus untuk hari ulang tahunmu yang terindah.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            roseGold: '#f43f5e',
+            blushPink: '#fb7185',
+            wineDark: '#18031e',
+            warmGold: '#fbbf24'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="selection:bg-pink-500 selection:text-white">
+
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Background Drifting Hearts Canvas -->
+  <canvas id="hearts-canvas"></canvas>
+
+  <!-- Confetti Celebration Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Audio / Ambient Music Control -->
+  <header class="fixed top-4 right-4 z-50 flex items-center space-x-2">
+    <button id="music-toggle-btn" class="glass-panel-light px-3 py-2 rounded-full text-xs md:text-sm font-medium flex items-center space-x-2 text-white/90 hover:text-white transition duration-300 active:scale-95 border border-white/20">
+      <span id="music-icon" class="text-base">🎵</span>
+      <span id="music-status-text" class="hidden sm:inline">Musik: Menyala</span>
+    </button>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 min-h-screen flex flex-col justify-center items-center px-4 py-8">
+
+    <!-- ==========================================
+         SCREEN 1: PIN LOCK SCREEN (23102005)
+         ========================================== -->
+    <section id="pin-screen" class="app-screen w-full max-w-md mx-auto">
+      <div id="pin-card" class="glass-panel rounded-3xl p-6 md:p-8 text-center border border-white/20 shadow-2xl relative overflow-hidden">
+        
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-rose-500 to-pink-400 text-white shadow-lg mb-4 text-2xl animate-bounce">
+          🔐
+        </div>
+
+        <h1 class="text-2xl md:text-3xl font-bold font-serif-title text-white mb-2">
+          A Special Secret for You
+        </h1>
+        <p class="text-pink-200/80 text-sm md:text-base mb-6 font-light">
+          Masukkan 8 digit tanggal paling istimewa untuk membuka isi hati ini:
+        </p>
+
+        <!-- PIN Indicator Dots -->
+        <div class="flex justify-center items-center space-x-2 md:space-x-3 mb-6" id="pin-dots-container">
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-dot"></div>
+        </div>
+
+        <!-- Feedback Message Area -->
+        <div id="pin-feedback" class="min-h-[44px] mb-4 text-sm flex items-center justify-center px-2">
+          <span class="text-white/60 text-xs italic">Petunjuk: Tanggal lahirmu tersayang (DDMMYYYY)</span>
+        </div>
+
+        <!-- Keypad -->
+        <div id="pin-keypad" class="grid grid-cols-3 gap-3 max-w-[280px] mx-auto">
+          <button data-val="1" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">1</button>
+          <button data-val="2" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">2</button>
+          <button data-val="3" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">3</button>
+          <button data-val="4" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">4</button>
+          <button data-val="5" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">5</button>
+          <button data-val="6" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">6</button>
+          <button data-val="7" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">7</button>
+          <button data-val="8" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">8</button>
+          <button data-val="9" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">9</button>
+          <button data-val="clear" class="h-14 rounded-2xl glass-panel-light text-xs font-semibold text-pink-300 hover:bg-pink-600/40 active:scale-95 transition">HAPUS</button>
+          <button data-val="0" class="h-14 rounded-2xl glass-panel-light text-xl font-semibold text-white hover:bg-pink-600/40 active:scale-95 transition">0</button>
+          <button data-val="del" class="h-14 rounded-2xl glass-panel-light text-lg font-semibold text-rose-300 hover:bg-pink-600/40 active:scale-95 transition">⌫</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 2: GREETING BIRTHDAY CARD
+         ========================================== -->
+    <section id="greeting-screen" class="app-screen w-full max-w-lg mx-auto hidden">
+      <div class="glass-panel rounded-3xl p-6 md:p-10 text-center border border-white/20 shadow-2xl relative">
+        
+        <div class="text-5xl md:text-6xl mb-4 animate-bounce">
+          🎂✨
+        </div>
+
+        <p class="text-pink-400 font-romantic text-2xl md:text-3xl mb-1">
+          Hai Bidadari Hatiku,
+        </p>
+
+        <h1 class="text-3xl md:text-4xl font-bold font-serif-title text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-rose-400 to-amber-200 mb-4">
+          Selamat Ulang Tahun!
+        </h1>
+
+        <div class="space-y-3 text-pink-100/90 text-sm md:text-base font-light leading-relaxed mb-8">
+          <p>
+            Hari ini, 23 Oktober, adalah hari paling berharga saat Tuhan menghadirkan seseorang yang begitu luar biasa ke dunia ini.
+          </p>
+          <p>
+            Sebelum membuka hadiah dan pesan rahasia yang telah kusiapkan, yuk kita ikuti petualangan kecil penuh cinta ini bersama-sama!
+          </p>
+        </div>
+
+        <button id="start-level1-btn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold text-base md:text-lg shadow-lg shadow-pink-500/40 transition duration-300 transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center space-x-2">
+          <span>Mulai Petualangan Cinta Kita</span>
+          <span>💖 ➔</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 3: LEVEL 1 (CATCH 10 HEART BUBBLES)
+         ========================================== -->
+    <section id="level1-screen" class="app-screen w-full max-w-xl mx-auto hidden">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 text-center border border-white/20 shadow-2xl relative">
+        
+        <!-- Header & Progress -->
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-xs uppercase tracking-wider font-semibold text-pink-300 bg-pink-950/60 px-3 py-1 rounded-full border border-pink-500/30">
+            Level 1: Tangkap Hati
+          </span>
+          <span id="bubble-counter-text" class="text-pink-300 font-bold text-sm">
+            0 / 10
+          </span>
+        </div>
+
+        <h2 class="text-xl md:text-2xl font-bold text-white font-serif-title mb-1">
+          Tangkap 10 Gelembung Hati 💖
+        </h2>
+        <p class="text-xs md:text-sm text-pink-200/80 mb-4 font-light">
+          Setiap gelembung menyimpan bisikan kata cinta untukmu. Ketuk dan tangkap semuanya!
+        </p>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-white/10 h-2.5 rounded-full overflow-hidden mb-6 border border-white/10">
+          <div id="bubble-progress-bar" class="bg-gradient-to-r from-pink-500 to-rose-400 h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <!-- Bubble Play Arena -->
+        <div id="bubble-play-area" class="heart-bubble-container glass-panel-light border border-white/10 bg-black/20">
+          <!-- Bubbles injected dynamically via JavaScript -->
+        </div>
+
+        <!-- Level 1 Completed Modal -->
+        <div id="level1-complete-modal" class="absolute inset-0 bg-black/80 backdrop-blur-md rounded-3xl p-6 flex flex-col items-center justify-center z-40 hidden">
+          <div class="text-5xl mb-3 animate-bounce">🎉💖</div>
+          <h3 class="text-2xl font-bold font-serif-title text-pink-300 mb-2">Semua Hati Tertangkap!</h3>
+          <p class="text-pink-100 text-sm max-w-xs mb-6 text-center leading-relaxed">
+            Setiap kata cinta itu tulus dari lubuk hatiku yang terdalam. Sekarang mari kita uji seberapa kenal kita!
+          </p>
+          <button id="next-level2-btn" class="py-3 px-6 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-semibold text-sm md:text-base shadow-lg shadow-pink-500/40 hover:scale-105 active:scale-95 transition">
+            Lanjut ke Level 2: Seberapa Kenal Kita? ➔
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 4: LEVEL 2 (TRIVIA ROMANTIS)
+         ========================================== -->
+    <section id="level2-screen" class="app-screen w-full max-w-xl mx-auto hidden">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl relative">
+        
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-xs uppercase tracking-wider font-semibold text-purple-300 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-500/30">
+            Level 2: Trivia Romantis
+          </span>
+          <span id="quiz-question-num" class="text-pink-300 font-medium text-xs md:text-sm">
+            Pertanyaan 1 dari 4
+          </span>
+        </div>
+
+        <h2 id="quiz-question-text" class="text-lg md:text-xl font-bold text-white font-serif-title mb-6 leading-snug">
+          Pertanyaan sedang dimuat...
+        </h2>
+
+        <!-- Options Container -->
+        <div id="quiz-options-container" class="space-y-3 mb-4">
+          <!-- Options injected via JavaScript -->
+        </div>
+
+        <!-- Wrong Answer Romantic Popup Modal -->
+        <div id="quiz-wrong-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+          <div class="glass-panel max-w-sm w-full rounded-3xl p-6 text-center border border-pink-500/40 shadow-2xl animate-scaleIn">
+            <div class="text-4xl mb-3">🥺💕</div>
+            <h4 class="text-xl font-bold font-serif-title text-pink-300 mb-2">Hampir Tepat Sayang!</h4>
+            <p id="quiz-wrong-message" class="text-sm text-pink-100/90 leading-relaxed mb-6 font-light">
+              Jawabanmu manis sekali, tapi cintaku lebih dari itu! Coba rasakan lagi ya sayang ❤️
+            </p>
+            <button id="quiz-wrong-close-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold text-sm shadow-md hover:bg-pink-600 transition">
+              Coba Tebak Lagi 🥰
+            </button>
+          </div>
+        </div>
+
+        <!-- Level 2 Completed Modal -->
+        <div id="level2-complete-modal" class="absolute inset-0 bg-black/80 backdrop-blur-md rounded-3xl p-6 flex flex-col items-center justify-center z-40 hidden">
+          <div class="text-5xl mb-3 animate-bounce">🏆✨</div>
+          <h3 class="text-2xl font-bold font-serif-title text-pink-300 mb-2">Hatimu & Hatiku Satu Frekuensi!</h3>
+          <p class="text-pink-100 text-sm max-w-xs mb-6 text-center leading-relaxed">
+            Hebat sekali! Kamu mengingat dan memahami segala hal manis tentang kita. Saatnya menguji daya ingat di permainan kartu cinta!
+          </p>
+          <button id="next-level3-btn" class="py-3 px-6 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-semibold text-sm md:text-base shadow-lg shadow-pink-500/40 hover:scale-105 active:scale-95 transition">
+            Lanjut ke Level 3: Temukan Pasangan Kartu ➔
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 5: LEVEL 3 (MEMORY MATCH - 12 CARDS)
+         ========================================== -->
+    <section id="level3-screen" class="app-screen w-full max-w-lg mx-auto hidden">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl relative">
+        
+        <!-- Header & Stats -->
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-xs uppercase tracking-wider font-semibold text-amber-300 bg-amber-950/60 px-3 py-1 rounded-full border border-amber-500/30">
+            Level 3: Pasangan Kartu
+          </span>
+          <div class="flex items-center space-x-3 text-xs md:text-sm font-medium">
+            <span class="text-pink-300">⏱️ <span id="memory-timer">00:00</span></span>
+            <span class="text-rose-300">❤️ <span id="memory-pairs-count">0 / 6</span></span>
+          </div>
+        </div>
+
+        <h2 class="text-xl md:text-2xl font-bold text-white font-serif-title text-center mb-1">
+          Temukan 6 Pasangan Kartu Cinta
+        </h2>
+        <p class="text-xs md:text-sm text-pink-200/80 text-center mb-6 font-light">
+          Balik kartu dan temukan pasangan simbol cinta kita yang cocok!
+        </p>
+
+        <!-- Memory Grid (12 Cards) -->
+        <div id="memory-card-grid" class="memory-grid mb-4">
+          <!-- Cards injected via JavaScript -->
+        </div>
+
+        <!-- Level 3 Completed Modal -->
+        <div id="level3-complete-modal" class="absolute inset-0 bg-black/85 backdrop-blur-md rounded-3xl p-6 flex flex-col items-center justify-center z-40 hidden">
+          <div class="text-5xl mb-3 animate-bounce">🎉💍🌹</div>
+          <h3 class="text-2xl font-bold font-serif-title text-pink-300 mb-1">Sempurna, Cintaku!</h3>
+          <p class="text-pink-200 text-xs mb-3">
+            Waktu penyelesaian: <span id="memory-result-time" class="font-bold text-amber-300 text-sm">00:00</span>
+          </p>
+          <p class="text-pink-100 text-sm max-w-xs mb-6 text-center leading-relaxed font-light">
+            Seperti kartu-kartu ini yang saling menemukan pasangannya, hatiku pun telah menemukan pasangan abadinya di dalam dirimu.
+          </p>
+          <button id="next-memories-btn" class="py-3 px-6 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-semibold text-sm md:text-base shadow-lg shadow-pink-500/40 hover:scale-105 active:scale-95 transition">
+            Buka Kenangan Indah & Surat Cinta 💌 ➔
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 6: MEMORIES GALLERY, LOVE LETTER & GIFT
+         ========================================== -->
+    <section id="memories-screen" class="app-screen w-full max-w-4xl mx-auto hidden pb-20">
+      
+      <!-- Polaroid Gallery Header -->
+      <div class="text-center mb-8">
+        <span class="text-xs uppercase tracking-wider font-semibold text-rose-300 bg-rose-950/60 px-4 py-1.5 rounded-full border border-rose-500/30 inline-block mb-3">
+          Our Sweet Journey 📸
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold font-serif-title text-white mb-2">
+          Galeri Kenangan Manis Kita
+        </h2>
+        <p class="text-pink-200/80 text-sm md:text-base font-light max-w-md mx-auto">
+          Geser dan ketuk foto untuk melihat kisah hangat di balik setiap momen indah kita bersama.
+        </p>
+      </div>
+
+      <!-- Horizontal Scrollable Polaroid Track -->
+      <div class="w-full overflow-x-auto pb-8 pt-4 px-2 no-scrollbar">
+        <div id="polaroid-gallery-track" class="flex space-x-6 md:space-x-8 items-center min-w-max mx-auto px-4">
+          <!-- Polaroid cards injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Scroll Down Indicator -->
+      <div class="text-center my-10 animate-bounce">
+        <p class="text-pink-300/80 text-xs uppercase tracking-widest mb-1">Gulir ke bawah untuk membaca surat</p>
+        <span class="text-2xl text-pink-400">↓</span>
+      </div>
+
+      <!-- ==========================================
+           SECTION: VINTAGE LOVE LETTER & ENVELOPE
+           ========================================== -->
+      <div class="mt-12 text-center">
+        
+        <h2 class="text-3xl md:text-4xl font-bold font-serif-title text-white mb-2">
+          Sepucuk Surat Cinta Untukmu 💌
+        </h2>
+        <p class="text-pink-200/80 text-sm md:text-base font-light mb-8 max-w-md mx-auto">
+          Ketuk amplop di bawah ini untuk membuka dan membaca isi surat rahasia ini.
+        </p>
+
+        <!-- Envelope -->
+        <div class="envelope-wrapper mb-8">
+          <div id="love-envelope" class="envelope flex items-center justify-center">
+            <div class="envelope-flap"></div>
+            <div class="wax-seal">
+              <span class="text-xl">❤️</span>
+            </div>
+            <div class="text-white/70 font-romantic text-2xl z-0">
+              Buka Surat Ini, Sayangku ✨
+            </div>
+          </div>
+        </div>
+
+        <!-- Unfolded Letter Paper Sheet -->
+        <div id="letter-content-paper" class="letter-sheet max-w-2xl mx-auto p-6 md:p-10 text-left hidden border border-pink-200/50 shadow-2xl">
+          
+          <!-- Letter Top Header -->
+          <div class="text-center pb-6 border-b border-rose-100 mb-6">
+            <span class="text-4xl md:text-5xl block mb-2">🎂💖</span>
+            <h3 class="font-serif-title text-2xl md:text-3xl font-bold text-rose-900 mb-1">
+              Happy Birthday, My Dearest Love!
+            </h3>
+            <p class="text-xs uppercase tracking-widest text-rose-400 font-semibold">
+              23 Oktober 2005 • Hari Paling Istimewa
+            </p>
+          </div>
+
+          <!-- Typewriter Output Text -->
+          <div class="font-romantic text-xl md:text-2xl leading-relaxed text-gray-800 whitespace-pre-line" id="letter-typewriter-text">
+            <!-- Dynamically typed per character via JS -->
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ==========================================
+           SECTION: SURPRISE BIRTHDAY GIFT BOX
+           ========================================== -->
+      <div id="gift-surprise-section" class="mt-16 text-center hidden">
+        <div class="glass-panel max-w-md mx-auto rounded-3xl p-8 border border-amber-300/30 shadow-2xl relative overflow-hidden">
+          
+          <div class="inline-block mb-4">
+            <div id="gift-box-btn" class="gift-box-btn text-7xl md:text-8xl select-none">
+              🎁
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold font-serif-title text-amber-300 mb-2">
+            Ada Satu Kejutan Terakhir!
+          </h3>
+          <p class="text-pink-100/90 text-sm mb-6 font-light leading-relaxed">
+            Ketuk kado di atas untuk membuka ledakan cinta dan ucapan puncak di hari bahagiamu ini!
+          </p>
+
+          <button id="gift-box-btn-2" onclick="document.getElementById('gift-box-btn').click()" class="py-3 px-8 rounded-full bg-gradient-to-r from-amber-400 to-rose-500 text-white font-bold text-sm shadow-lg shadow-amber-500/40 hover:scale-105 active:scale-95 transition">
+            Buka Hadiah Terakhir ✨
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Fullscreen Polaroid Lightbox Modal -->
+      <div id="polaroid-lightbox-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="relative max-w-md w-full bg-white text-gray-900 rounded-2xl p-4 shadow-2xl">
+          <button id="lightbox-close-btn" class="absolute -top-12 right-0 text-white text-3xl font-light hover:text-pink-300 transition">
+            ✕
+          </button>
+          <div class="aspect-square w-full overflow-hidden rounded-xl mb-4 bg-gray-100">
+            <img id="lightbox-img" src="" alt="Kenangan Romantis" class="w-full h-full object-cover">
+          </div>
+          <h4 id="lightbox-caption" class="font-romantic text-2xl text-rose-800 mb-2 text-center"></h4>
+          <p id="lightbox-story" class="text-xs md:text-sm text-gray-600 leading-relaxed text-center font-light px-2"></p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       GRAND CELEBRATION CONFETTI MODAL
+       ========================================== -->
+  <div id="gift-surprise-modal" class="fixed inset-0 bg-black/85 backdrop-blur-lg z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel max-w-lg w-full rounded-3xl p-8 md:p-10 text-center border border-amber-300/50 shadow-2xl relative">
+      
+      <div class="text-6xl md:text-7xl mb-4 animate-bounce">
+        👑🎉🎂
+      </div>
+
+      <h2 class="text-3xl md:text-4xl font-bold font-serif-title text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-300 to-pink-400 mb-4">
+        SELAMAT ULANG TAHUN SAYANGKU!
+      </h2>
+
+      <p class="font-romantic text-2xl md:text-3xl text-pink-300 mb-4">
+        "You are my today, and all of my tomorrows."
+      </p>
+
+      <div class="space-y-3 text-pink-100/90 text-sm md:text-base font-light leading-relaxed mb-8">
+        <p>
+          Semoga setiap hembusan lilin membawa berkah, senyummu selalu mekar, dan cinta kita terus bertumbuh semakin indah selamanya.
+        </p>
+        <p class="font-medium text-pink-200">
+          I love you so much, more than words can say! ❤️✨
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <button id="replay-all-btn" class="py-3 px-6 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white font-medium text-sm transition">
+          🔄 Ulangi Kejutan
+        </button>
+        <button onclick="window.print()" class="py-3 px-6 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold text-sm shadow-lg shadow-pink-500/40 transition">
+          📸 Simpan Kenangan Ini
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Engine -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
