@@ -1072,12 +1072,10 @@ Dengan segenap cinta,
 
         if (!letterTypewriterRunning) {
           typewriteLetter(letterTextEl, letterText, () => {
-            // Finished typing! Reveal gift box
+            // Selesai mengetik: Tampilkan kado di bawah TANPA memaksa scroll
             if (giftTriggerSection) {
               giftTriggerSection.classList.remove('hidden');
-              giftTriggerSection.scrollIntoView({ behavior: 'smooth' });
-              sound.playSuccess();
-              confetti.burst(120);
+              // Biarkan client membaca surat sampai tuntas dan scroll sendiri ke bawah
             }
           });
         }
