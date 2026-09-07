@@ -670,18 +670,18 @@ Dengan segenap cinta,
     progressBar.style.width = '0%';
     modal.classList.add('hidden');
 
-    // Distribusi posisi yang rapi & estetik agar tidak menumpuk
+    // Distribusi posisi yang rapi & berada aman di dalam arena agar tidak mepet tepi
     const positions = [
-      { top: 20, left: 15 },
-      { top: 55, left: 22 },
-      { top: 28, left: 42 },
-      { top: 62, left: 52 },
-      { top: 18, left: 70 },
-      { top: 52, left: 78 },
+      { top: 24, left: 20 },
+      { top: 52, left: 22 },
+      { top: 28, left: 45 },
+      { top: 62, left: 48 },
+      { top: 24, left: 68 },
+      { top: 52, left: 70 },
       { top: 38, left: 28 },
-      { top: 35, left: 60 },
-      { top: 70, left: 35 },
-      { top: 68, left: 70 }
+      { top: 38, left: 58 },
+      { top: 70, left: 32 },
+      { top: 68, left: 60 }
     ];
 
     for (let i = 0; i < 10; i++) {
@@ -694,10 +694,10 @@ Dengan segenap cinta,
         const bubble = document.createElement('div');
         bubble.className = 'heart-bubble';
 
-        const size = Math.floor(Math.random() * 14) + 64; // 64px - 78px
+        const size = Math.floor(Math.random() * 12) + 64; // 64px - 76px
         const pos = positions[i] || {
-          top: Math.floor(Math.random() * 60) + 15,
-          left: Math.floor(Math.random() * 75) + 10
+          top: Math.floor(Math.random() * 50) + 20,
+          left: Math.floor(Math.random() * 60) + 20
         };
 
         const animDelay = (Math.random() * 2).toFixed(2);
@@ -737,15 +737,22 @@ Dengan segenap cinta,
 
           sound.playPop();
 
-          // Spawn floating romantic quote
+          // Spawn floating romantic quote dengan clamping koordinat aman
           const rect = bubble.getBoundingClientRect();
           const containerRect = container.getBoundingClientRect();
           const quoteText = romanticQuotes[i] || 'I Love You ❤️';
 
+          const rawX = rect.left - containerRect.left + rect.width / 2;
+          // Kunci posisi agar tidak pernah menabrak tepi kiri atau kanan
+          const clampedX = Math.max(90, Math.min(containerRect.width - 90, rawX));
+          const rawY = rect.top - containerRect.top;
+          // Kunci posisi atas agar tidak menembus batas atas kotak saat melayang
+          const clampedY = Math.max(45, Math.min(containerRect.height - 35, rawY));
+
           const quotePill = document.createElement('div');
-          quotePill.className = 'absolute bubble-quote-pill bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm md:text-base px-4 py-2 rounded-full shadow-xl border border-white/50 whitespace-nowrap z-30 font-semibold flex items-center space-x-1.5';
-          quotePill.style.left = `${rect.left - containerRect.left + rect.width / 2}px`;
-          quotePill.style.top = `${rect.top - containerRect.top}px`;
+          quotePill.className = 'absolute bubble-quote-pill bg-gradient-to-r from-rose-500 to-pink-600 text-white text-xs md:text-sm px-3.5 py-1.5 rounded-full shadow-2xl border border-white/60 z-50 font-semibold flex items-center justify-center text-center';
+          quotePill.style.left = `${clampedX}px`;
+          quotePill.style.top = `${clampedY}px`;
           quotePill.innerText = quoteText;
 
           container.appendChild(quotePill);
